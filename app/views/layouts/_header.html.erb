@@ -13,10 +13,13 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownXxl">
-              <li><a class="dropdown-item" href="#">Profil</a></li>
-              <li><a class="dropdown-item" href="#">Déconnexion</a></li>
-              <li><a class="dropdown-item" href="#">S'inscrire</a></li>
-              <li><a class="dropdown-item" href="#">Se connecter</a></li>
+              <% if user_signed_in? %>
+                <li><a class="dropdown-item" href="<%=%>">Profil de <%=current_user.email%></a></li>
+                <li><a class="dropdown-item" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
+              <% else %>
+                <li><a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a></li>
+                <li><a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a></li>
+              <% end %>
             </ul>
           </li>
         </ul>
