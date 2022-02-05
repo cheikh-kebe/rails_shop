@@ -1,0 +1,33 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid py-3">
+      <a class="navbar-brand" href="/">Marvel Comics Shop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" href="<%=items_path%>">Articles</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownXxl">
+              <% if user_signed_in? %>
+                <li><a class="dropdown-item" href="<%=user_path(current_user)%>">Profil de <%=current_user.email%></a></li>
+                <li><a class="dropdown-item" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
+              <% else %>
+                <li><a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a></li>
+                <li><a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a></li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Recherche</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</header>

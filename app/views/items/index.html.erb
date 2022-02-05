@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row mt-4">
+    <% @items.each do |item| %>
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded" width="200" height="280" src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/535608/535608._SX1600_QL80_TTD_.jpg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
+        <h2><%=item.title%></h2>
+        <p><%=item.description%></p>
+        <h5><%=item.price%></h5>
+        <p><a class="btn btn-secondary" href="<%=item_path(:id => item.id)%>">View details »</a></p>
+      </div>
+    <% end %>
+  </div>
+</div>
