@@ -25,14 +25,14 @@ ActiveRecord::Schema.define(version: 2022_02_04_101238) do
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.decimal "price"
+    t.decimal "price", default: "0.0"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "line_items", force: :cascade do |t|
-    t.integer "quantity"
+    t.integer "quantity", default: 1
     t.bigint "item_id"
     t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false

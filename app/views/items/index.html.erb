@@ -6,6 +6,8 @@
         <h2><%=item.title%></h2>
         <p><%=item.description%></p>
         <h5><%=item.price%></h5>
+        
+        <%= button_to "Add #{item.title} to cart", line_items_path(:item_id => item.id) %>
         <p><a class="btn btn-secondary" href="<%=item_path(:id => item.id)%>">View details »</a></p>
       </div>
     <% end %>

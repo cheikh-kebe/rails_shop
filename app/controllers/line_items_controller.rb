@@ -1,58 +1,55 @@
 class LineItemsController < ApplicationController
-  before_action :set_line_item, only: %i[ show edit update destroy ]
-
-  # GET /line_items or /line_items.json
-  def index
-    @line_items = LineItem.all
+  before_action :authenticate_user!
+  before_action :set_line_item, only: %i[ add_quantity reduce_quantity show destroy ]
+  def add_quantity
+    @line_item.quantity += 1
+    @line_item.save
+    redirect_to cart_path(@current_cart)
+  end
+  
+  def reduce_quantity
+    if @line_item.quantity > 1
+      @line_item.quantity -= 1
+    end
+    @line_item.save
+    redirect_to cart_path(@current_cart)
   end
 
   # GET /line_items/1 or /line_items/1.json
   def show
   end
 
-  # GET /line_items/new
-  def new
-    @line_item = LineItem.new
-  end
-
-  # GET /line_items/1/edit
-  def edit
-  end
-
   # POST /line_items or /line_items.json
   def create
-    @line_item = LineItem.new(line_item_params)
+    chosen_product = Item.find(params[:item_id])
+    current_cart = @current_cart
+    if current_cart.items.include?(chosen_product)
+      # Find the line_item with the chosen_product
+      @line_item = current_cart.line_items.find_by(:item_id => chosen_product)
+      # Iterate the line_item's quantity by one
+      @line_item.quantity += 1
+    else
+      @line_item = LineItem.new
+      @line_item.cart = current_cart
+      @line_item.item = chosen_product
+    end
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to line_item_url(@line_item), notice: "Line item was successfully created." }
-        format.json { render :show, status: :created, location: @line_item }
+        format.html { redirect_to cart_path(current_cart), notice: "Item ajouté au panier." }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /line_items/1 or /line_items/1.json
-  def update
-    respond_to do |format|
-      if @line_item.update(line_item_params)
-        format.html { redirect_to line_item_url(@line_item), notice: "Line item was successfully updated." }
-        format.json { render :show, status: :ok, location: @line_item }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /line_items/1 or /line_items/1.json
   def destroy
+    current_cart = @current_cart
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: "Line item was successfully destroyed." }
+      format.html { redirect_to cart_path(current_cart), notice: "item supprimé du panier." }
       format.json { head :no_content }
     end
   end
