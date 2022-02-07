@@ -7,6 +7,7 @@ environment.plugins.append(
     $: "jquery",
     jQuery: "jquery",
     Popper: ["popper.js", "default"],
+    Rails: '@rails/ujs'
   })
 );
 module.exports = environment;

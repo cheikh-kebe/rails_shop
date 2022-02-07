@@ -1,13 +1,42 @@
-<div class="container">
-  <div class="row mt-4">
-    <% @items.each do |item| %>
-      <div class="col-lg-4">
-        <img class="bd-placeholder-img rounded" width="200" height="280" src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/535608/535608._SX1600_QL80_TTD_.jpg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false">
-        <h2><%=item.title%></h2>
-        <p><%=item.description%></p>
-        <h5><%=item.price%></h5>
-        <p><a class="btn btn-secondary" href="<%=item_path(:id => item.id)%>">View details »</a></p>
+<% @items.each do |item|%>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+    <div class="col-xs-12 col-md-10 bootstrap snippets bootdeys">
+      <div class="product-content product-wrap clearfix">
+        <div class="row">
+          <div class="col-md-5 col-sm-12 col-xs-12">
+            <div class="product-image">
+              <img src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/16148/16148._SX1600_QL80_TTD_.jpg" alt="194x228" class="img-fluid">
+              <span class="tag2 hot">
+                hot
+              </span>
+            </div>
+          </div>
+          <div class="col-md-7 col-sm-12 col-xs-12">
+            <div class="product-deatil">
+              <h5 class="name">
+                <a href="<%=item_path(item.id)%>">
+                  <%=item.title%> <span>comics</span>
+                </a>
+              </h5>
+              <p class="price-container">
+                <span><%=number_to_currency(item.price, unit: "€", format: "%n %u")%></span>
+              </p>
+              <span class="tag1"></span>
+            </div>
+            <div class="description">
+              <p><%=item.description%> </p>
+            </div>
+            <div class="product-info smart-form">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                  <%=button_to "Ajouter au panier", line_items_path(:item_id => item.id), class: "btn btn-sm btn-success"%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+<% end %>

@@ -10,6 +10,15 @@
           <li class="nav-item">
             <a class="nav-link" href="<%=items_path%>">Articles</a>
           </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <% if @current_cart.line_items.count >=1  %>
+                <a class="nav-link" href="<%=cart_path(id: @current_cart.id)%>">Mon panier<span class="badge rounded-pill bg-danger"><%=@current_cart.line_items.count%></span></a>
+              <% else %>
+                <a class="nav-link" href="<%=cart_path(id: @current_cart.id)%>">Mon panier</a>
+              <% end %>
+            </li>
+          <% end %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownXxl">

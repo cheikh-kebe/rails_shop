@@ -1,0 +1,95 @@
+<div class="container mt-5">
+  <div class="contentbar">
+    <!-- Start row -->
+    <div class="row">
+      <!-- Start col -->
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <div class="card m-b-30">
+          <div class="card-header">
+            <% if @cart.line_items.count == 0 %>
+              <h5 class="card-title">Votre panier est vide.</h5>
+            <% else %>
+              <h5 class="card-title">Mon Panier</h5>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-lg-10 col-xl-8">
+                <div class="cart-container">
+                  <div class="cart-head">
+                    <div class="table-responsive">
+                      <table class="table table-borderless">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Action</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Article</th>
+                            <th scope="col">Qté</th>
+                            <th scope="col">Prix unitaire</th>
+                            <th scope="col" class="text-right">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% @cart.line_items.each do |line_item| %>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td><%= button_to "Supprimer", line_item_path(line_item), method: :delete, class: "btn btn-sm btn-danger btn-block" %></td>
+                              <td><img src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/16148/16148._SX1600_QL80_TTD_.jpg" class="img-fluid" width="100" alt="product"></td>
+                              <td><%=line_item.item.title%></td>
+                              <td>
+                                <div class="form-group mb-0 d-flex">
+                                  <% if line_item.quantity > 1 %>
+                                    <%=button_to "+1", line_item_add_path(:id => line_item), method: :post, class: "btn btn-sm btn-primary btn-block me-1"%>
+                                    <%=button_to "-1", line_item_reduce_path(:id => line_item), method: :post, class: "btn btn-sm btn-primary btn-block"%>
+                                  <% else %>
+                                    <%=button_to "+1", line_item_add_path(:id => line_item), method: :post, class: "btn btn-sm btn-primary btn-block me-1"%>
+                                  <% end %>
+                                  <h5 class="ms-1"><%=line_item.quantity%></h5>
+                                </div>
+                              </td>
+                              <td><%= number_to_currency(line_item.item.price,  :unit=>'€', format: "%n %u" ) %></td>
+                              <td class="text-right"><%= number_to_currency(line_item.total_price,  :unit=>'€', format: "%n %u" ) %></td>
+                            </tr>
+                          <% end %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="cart-body">
+                    <div class="row">
+                      <div class="col-md-12 order-1 order-lg-2 col-lg-7 col-xl-6">
+                        <div class="order-total table-responsive ">
+                          <table class="table table-borderless text-right">
+                            <tbody>
+                              <tr>
+                                <td class="f-w-7 font-18">
+                                  <h4>Montant total:</h4>
+                                </td>
+                                <td class="f-w-7 font-18">
+                                  <h4><%= number_to_currency(@cart.sub_total, :unit=>'€', format: "%n %u" ) %></h4>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cart-footer text-right">
+                    <% if @cart.line_items.count == 0 %>
+                    <% else %>
+                      <a href="page-checkout.html" class="btn btn-success my-1">Procéder au paiement<i class="ri-arrow-right-line ml-2"></i></a>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End col -->
+    </div>
+    <!-- End row -->
+  </div>
+</div>
