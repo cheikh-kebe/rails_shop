@@ -5,7 +5,7 @@
         <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
       </div>
       <div class="col-md-6">
-        <strong>Information</strong><br>
+        <h1><strong>Mes informations</strong></h1><br>
         <div class="table-responsive">
           <table class="table table-user-information">
             <tbody>
@@ -13,7 +13,7 @@
                 <td>
                   <strong>
                     <span class="glyphicon glyphicon-asterisk text-primary"></span>
-                    Identificacion                                                
+                    Numéro Client                                                
                   </strong>
                 </td>
                 <td class="text-primary">
@@ -24,40 +24,40 @@
                 <td>
                   <strong>
                     <span class="glyphicon glyphicon-user  text-primary"></span>
-                    Name                                                
+                    Nom                                               
                   </strong>
                 </td>
                 <td class="text-primary">
-                  Bootdey     
+                  <%=current_user.first_name%>     
                 </td>
               </tr>
               <tr>
                 <td>
                   <strong>
                     <span class="glyphicon glyphicon-cloud text-primary"></span>
-                    Lastname                                                
+                    Prénom                                                
                   </strong>
                 </td>
                 <td class="text-primary">
-                  Bootstrap  
+                  <%=current_user.last_name%>  
                 </td>
               </tr>
               <tr>
                 <td>
                   <strong>
                     <span class="glyphicon glyphicon-bookmark text-primary"></span>
-                    Username                                                
+                    Nom d'utilisateur                                                
                   </strong>
                 </td>
                 <td class="text-primary">
-                  bootnipets 
+                  <%=current_user.username%> 
                 </td>
               </tr>
               <tr>
                 <td>
                   <strong>
                     <span class="glyphicon glyphicon-eye-open text-primary"></span>
-                    Role                                                
+                    Compte                                                
                   </strong>
                 </td>
                 <td class="text-primary">
@@ -72,7 +72,19 @@
                   </strong>
                 </td>
                 <td class="text-primary">
-                  noreply@email.com  
+                  <%=current_user.email%>  
+                </td>
+              </tr>
+              <tr>
+              <tr>
+                <td>
+                  <strong>
+                    <span class="glyphicon glyphicon-envelope text-primary"></span>
+                    Adresse                                               
+                  </strong>
+                </td>
+                <td class="text-primary">
+                  <%=current_user.adress%>  
                 </td>
               </tr>
               <tr>
@@ -83,7 +95,7 @@
                   </strong>
                 </td>
                 <td class="text-primary">
-                  20 jul 20014
+                  <%=l current_user.created_at, :format => "%e %b %Y", :locale => 'fr'%>
                 </td>
               </tr>
               <tr>
@@ -94,7 +106,7 @@
                   </strong>
                 </td>
                 <td class="text-primary">
-                  20 jul 20014 20:00:00
+                  <%=l current_user.updated_at, :format => "%e %b %Y", :locale => 'fr'%>
                 </td>
               </tr>
             </tbody>
