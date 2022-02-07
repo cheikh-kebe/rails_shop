@@ -34,8 +34,8 @@
                           <% @cart.line_items.each do |line_item| %>
                             <tr>
                               <th scope="row">1</th>
-                              <td><%= button_to "Remove item", line_item_path(line_item), method: :delete, class: "btn btn-sm btn-danger btn-block" %></td>
-                              <td><img src="https://themesbox.in/admin-templates/olian/html/light-vertical/assets/images/ecommerce/product_01.svg" class="img-fluid" width="35" alt="product"></td>
+                              <td><%= button_to "Supprimer", line_item_path(line_item), method: :delete, class: "btn btn-sm btn-danger btn-block" %></td>
+                              <td><img src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/16148/16148._SX1600_QL80_TTD_.jpg" class="img-fluid" width="100" alt="product"></td>
                               <td><%=line_item.item.title%></td>
                               <td>
                                 <div class="form-group mb-0 d-flex">
@@ -77,8 +77,10 @@
                     </div>
                   </div>
                   <div class="cart-footer text-right">
-                    <button type="button" class="btn btn-info my-1"><i class="ri-save-line mr-2"></i>Update Cart</button>
-                    <a href="page-checkout.html" class="btn btn-success my-1">Proceed to Checkout<i class="ri-arrow-right-line ml-2"></i></a>
+                    <% if @cart.line_items.count == 0 %>
+                    <% else %>
+                      <a href="page-checkout.html" class="btn btn-success my-1">Procéder au paiement<i class="ri-arrow-right-line ml-2"></i></a>
+                    <% end %>
                   </div>
                 </div>
               </div>

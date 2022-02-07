@@ -36,7 +36,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to cart_path(current_cart), notice: "Item ajouté au panier." }
+        format.html { redirect_to items_path, notice: "Item ajouté au panier." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
