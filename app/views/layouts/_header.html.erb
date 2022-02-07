@@ -23,8 +23,8 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
             <ul class="dropdown-menu" aria-labelledby="dropdownXxl">
               <% if user_signed_in? %>
-                <li><a class="dropdown-item" href="<%=user_path(current_user)%>">Profil de <%=current_user.email%></a></li>
-                <li><a class="dropdown-item" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
+                <li><a class="dropdown-item" href="<%=user_path(current_user)%>">Profil de <%=current_user.username.capitalize%></a></li>
+                <li><a class="dropdown-item text-danger" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
               <% else %>
                 <li><a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a></li>
                 <li><a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a></li>
