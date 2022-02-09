@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+  resources :orders, only: [:new, :create]
+
   devise_for :users
-  resources :users
+
+  resources :users , :path => "utilisateur" do 
+    resources :carts, :path => "panier"
+  end
   
-  resources :items
-  resources :carts
+  resources :items, only: [:show, :index]
+  
 
   resources :line_items
   post "line_items/:id/add" => "line_items#add_quantity", as: "line_item_add"

@@ -1,42 +1,40 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <div class="container-fluid py-3">
-      <a class="navbar-brand" href="/">Marvel Comics Shop</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
+  <div class="container-fluid py-3">
+    <a class="navbar-brand" href="/">Marvel Comics Shop</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" href="<%=items_path%>">Articles</a>
+        </li>
+        <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="<%=items_path%>">Articles</a>
+            <% if @current_cart.line_items.count >=1  %>
+              <a class="nav-link" href="<%=user_cart_path(user_id:current_user.id, id: @current_cart.id)%>">Mon panier<span class="badge rounded-pill bg-danger"><%=@current_cart.line_items.count%></span></a>
+            <% else %>
+              <a class="nav-link" href="<%=user_cart_path(user_id:current_user.id, id: @current_cart.id)%>">Mon panier</a>
+            <% end %>
           </li>
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <% if @current_cart.line_items.count >=1  %>
-                <a class="nav-link" href="<%=cart_path(id: @current_cart.id)%>">Mon panier<span class="badge rounded-pill bg-danger"><%=@current_cart.line_items.count%></span></a>
-              <% else %>
-                <a class="nav-link" href="<%=cart_path(id: @current_cart.id)%>">Mon panier</a>
-              <% end %>
-            </li>
-          <% end %>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownXxl">
-              <% if user_signed_in? %>
-                <li><a class="dropdown-item" href="<%=user_path(current_user)%>">Profil de <%=current_user.username.capitalize%></a></li>
-                <li><a class="dropdown-item text-danger" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
-              <% else %>
-                <li><a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a></li>
-                <li><a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a></li>
-              <% end %>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Recherche</button>
-        </form>
-      </div>
+        <% end %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="dropdownXxl" data-bs-toggle="dropdown" aria-expanded="false">Mon espace</a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownXxl">
+            <% if user_signed_in? %>
+              <li><a class="dropdown-item" href="<%=user_path(current_user)%>">Profil de <%=current_user.username ? current_user.username.capitalize : current_user.username%></a></li>
+              <li><a class="dropdown-item text-danger" href="<%=destroy_user_session_path%>">Déconnexion</a></li>
+            <% else %>
+              <li><a class="dropdown-item" href="<%=new_user_session_path%>">Se connecter</a></li>
+              <li><a class="dropdown-item" href="<%=new_user_registration_path%>">S'inscrire</a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Recherche</button>
+      </form>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>

@@ -1,0 +1,68 @@
+<section id="pay">
+  <section id="profile">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="our-team">
+              <div class="picture">
+              </div>
+              <div class="team-content">
+                <%= form_with url: orders_path, local: true, method: :post do |form| %>
+                  <% if order.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+                      <ul>
+                        <% order.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field">
+                    <%= form.text_field :cart_id, value: @cart.id, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :name, value: current_user.last_name, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :username, value: current_user.username, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :total_price, value: @cart.sub_total, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :email, value: current_user.email, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :adress, value: current_user.adress, readonly: true %>
+                  </div>
+                  <div class="field">
+                    <%= form.text_field :customer_stripe_id, value: @customer_stripe_id, readonly: true %>
+                  </div>
+                  <%= form_tag orders_path do %>
+                    <article>
+                      <label class="amount">
+                        <span> Prix de la commande : <%= @cart.sub_total %> €</span>
+                      </label>
+                    </article>
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Achat <%=@cart.sub_total%>"
+    data-email="<%=current_user.email%>"
+    data-amount="<% @stripe_amount %>"
+    data-locale="auto"></script>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

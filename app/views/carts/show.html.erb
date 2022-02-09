@@ -80,6 +80,7 @@
                     <% if @cart.line_items.count == 0 %>
                     <% else %>
                       <a href="page-checkout.html" class="btn btn-success my-1">Procéder au paiement<i class="ri-arrow-right-line ml-2"></i></a>
+                      <%=link_to "Commander", new_order_path, class:"btn btn-success my-1"%>
                     <% end %>
                   </div>
                 </div>
