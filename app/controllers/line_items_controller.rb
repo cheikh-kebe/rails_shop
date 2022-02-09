@@ -2,17 +2,19 @@ class LineItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_line_item, only: %i[ add_quantity reduce_quantity show destroy ]
   def add_quantity
+    current_cart = @current_cart
     @line_item.quantity += 1
     @line_item.save
-    redirect_to cart_path(@current_cart)
+    redirect_to user_cart_path(user_id: current_user.id, id: current_cart)
   end
   
   def reduce_quantity
+    current_cart = @current_cart
     if @line_item.quantity > 1
       @line_item.quantity -= 1
     end
     @line_item.save
-    redirect_to cart_path(@current_cart)
+    redirect_to user_cart_path(user_id: current_user.id, id: current_cart)
   end
 
   # GET /line_items/1 or /line_items/1.json
@@ -36,7 +38,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to items_path, notice: "Item ajouté au panier." }
+        format.html { redirect_to user_cart_path(user_id: current_user.id, id: current_cart), notice: "Item ajouté au panier." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end

@@ -229,6 +229,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
+    stripe (5.43.0)
     table_print (1.5.7)
     thor (1.2.1)
     tilt (2.0.10)
@@ -283,6 +284,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  stripe
   table_print
   turbolinks (~> 5)
   tzinfo-data

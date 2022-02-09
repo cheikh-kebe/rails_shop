@@ -51,7 +51,7 @@
                   </strong>
                 </td>
                 <td class="text-primary">
-                  <%=current_user.username.capitalize%>
+                  <%=current_user.username ? current_user.username.capitalize : current_user.username%>
                 </td>
               </tr>
               <tr>
@@ -120,6 +120,7 @@
       </div>
     </div>
     <br>
+    <% @orders.each do |order|%>
     <div class="col-md-9">
       <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
         <div class="tab-content" id="myTabContent">
@@ -161,4 +162,5 @@
         </div>
       </div>
     </div>
+    <% end %>
   </div>
