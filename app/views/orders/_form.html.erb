@@ -20,16 +20,16 @@
                     </div>
                   <% end %>
                   <div class="field">
-                    <%= form.text_field :cart_id, value: @cart.id, readonly: true %>
+                    <%= form.hidden_field :cart_id, value: @cart.id, readonly: true %>
                   </div>
                   <div class="field">
-                    <%= form.text_field :user_id, value: current_user.id, readonly: true %>
+                    <%= form.hidden_field :user_id, value: current_user.id, readonly: true %>
                   </div>
                   <div class="field">
-                    <%= form.text_field :name, value: current_user.last_name, readonly: true %>
+                    <%= form.text_field :username, value: current_user.username %>
                   </div>
                   <div class="field">
-                    <%= form.text_field :username, value: current_user.username, readonly: true %>
+                    <%= form.text_field :name, value: current_user.first_name %>
                   </div>
                   <div class="field">
                     <%= form.text_field :total_price, value: @cart.sub_total, readonly: true %>
@@ -38,10 +38,7 @@
                     <%= form.text_field :email, value: current_user.email, readonly: true %>
                   </div>
                   <div class="field">
-                    <%= form.text_field :adress, value: current_user.adress, readonly: true %>
-                  </div>
-                  <div class="field">
-                    <%= form.text_field :customer_stripe_id, value: @customer_stripe_id, readonly: true %>
+                    <%= form.text_field :adress, value: current_user.adress %>
                   </div>
                   <%= form_tag orders_path do %>
                     <article>
@@ -52,7 +49,7 @@
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Achat <%=@cart.sub_total%>"
+    data-description="marvel comics shop: <%=@cart.sub_total%>"
     data-email="<%=current_user.email%>"
     data-amount="<% @stripe_amount %>"
     data-locale="auto"></script>

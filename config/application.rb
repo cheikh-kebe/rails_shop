@@ -12,6 +12,7 @@ module ComicsShop
     config.load_defaults 6.1
     config.i18n.default_locale = :fr
     I18n.default_locale = :fr
+    config.paths['app/views'] << "app/views/devise"
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

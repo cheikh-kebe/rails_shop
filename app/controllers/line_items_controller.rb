@@ -38,7 +38,7 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to user_cart_path(user_id: current_user.id, id: current_cart), notice: "Item ajouté au panier." }
+        format.html { redirect_to user_cart_path(user_id: current_user.id, id: current_cart), notice: "Article ajouté au panier." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -51,7 +51,7 @@ class LineItemsController < ApplicationController
     @line_item.destroy
 
     respond_to do |format|
-      format.html { redirect_to cart_path(current_cart), notice: "item supprimé du panier." }
+      format.html { redirect_to user_cart_path(current_cart), notice: "Article supprimé du panier." }
       format.json { head :no_content }
     end
   end
