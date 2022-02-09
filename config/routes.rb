@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :orders, only: [:new, :create]
 
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   resources :users , :path => "utilisateur" do 
     resources :carts, :path => "panier"
