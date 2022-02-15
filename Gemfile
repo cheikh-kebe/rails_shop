@@ -48,6 +48,7 @@ group :development do
   gem 'guard'
   gem 'guard-livereload', '~> 2.4', require: false
   gem 'rack-livereload'
+  
 end
 
 group :test do
@@ -56,6 +57,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
