@@ -9,5 +9,4 @@ RSpec.describe Cart, :type => :model do
    it { should have_many(:line_items) } 
    it { should have_many(:items).through(:line_items) } 
 
-   it "should "
   end
