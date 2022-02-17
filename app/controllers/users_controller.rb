@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    @orders = Order.where(user_id: current_user.id)
   end
 
   # GET /users/new
@@ -66,6 +67,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :adress, :email)
+      params.require(:user).permit(:first_name, :last_name, :username, :adress, :email, :avatar)
     end
 end
