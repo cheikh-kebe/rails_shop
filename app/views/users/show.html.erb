@@ -120,7 +120,6 @@
       </div>
     </div>
     <br>
-    <% @orders.each do |order|%>
     <div class="col-md-9">
       <div class="osahan-account-page-right shadow-sm bg-white p-4 h-100">
         <div class="tab-content" id="myTabContent">
@@ -130,37 +129,37 @@
               <div class="gold-members p-4">
                 <a href="#">
                 </a>
-                <div class="media">
-                  <a href="#">
-                    <img class="mr-4" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
-                  </a>
-                  <div class="media-body">
+                <% @orders.each do |order|%>
+                  <div class="media">
+                    <h3>Commande n°<%=order.id%></h3>
                     <a href="#">
-                      <span class="float-right text-info">Delivered on Mon, Nov 12, 7:18 PM <i class="icofont-check-circled text-success"></i></span>
+                      <img class="mr-4" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="Generic placeholder image">
                     </a>
-                    <h6 class="mb-2">
-                      <a href="#"></a>
-                      <a href="#" class="text-black">Gus's World Famous Fried Chicken</a>
-                    </h6>
-                    <p class="text-gray mb-1"><i class="icofont-location-arrow"></i> 730 S Mendenhall Rd, Memphis, TN 38117, USA
-                    </p>
-                    <p class="text-gray mb-3"><i class="icofont-list"></i> ORDER #25102589748 <i class="icofont-clock-time ml-2"></i> Mon, Nov 12, 6:26 PM</p>
-                    <p class="text-dark">Veg Masala Roll x 1, Veg Burger x 1, Veg Penne Pasta in Red Sauce x 1
-                    </p>
-                    <hr>
-                    <div class="float-right">
-                      <a class="btn btn-sm btn-outline-primary" href="#"><i class="icofont-headphone-alt"></i> HELP</a>
-                      <a class="btn btn-sm btn-primary" href="#"><i class="icofont-refresh"></i> REORDER</a>
+                    <div class="media-body">
+                      <span class="float-right text-info">Commande passée le: <%=l order.created_at, :format => "%e %b %Y", :locale => 'fr'%> <i class="icofont-check-circled text-success"></i></span>
+                      <h6 class="mb-2">
+                        <a href="#"></a>
+                        <a href="#" class="text-black">Gus's World Famous Fried Chicken</a>
+                      </h6>
+                      <p class="text-gray mb-1"><i class="icofont-location-arrow"></i> Addresse de livraison:<address><%=order.user.adress%></address>
+                      </p>
+                      <p class="text-gray mb-3"><i class="icofont-list"></i> ORDER #25102589748 <i class="icofont-clock-time ml-2"></i> Mon, Nov 12, 6:26 PM</p>
+                      <p class="text-dark">
+                      </p>
+                      <hr>
+                      <div class="float-right">
+                        <a class="btn btn-sm btn-outline-primary" href="#"><i class="icofont-headphone-alt"></i> HELP</a>
+                        <a class="btn btn-sm btn-primary" href="#"><i class="icofont-refresh"></i> REORDER</a>
+                      </div>
+                      <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Total Paid:</span> $300
+                      </p>
                     </div>
-                    <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Total Paid:</span> $300
-                    </p>
                   </div>
-                </div>
+                <% end %>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <% end %>
   </div>

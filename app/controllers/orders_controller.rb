@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
   # POST /orders or /orders.json
   def create
     @order = Order.new(order_params)
+    @user = current_user
     @amount = @cart.sub_total
     @stripe_amount = (@amount.to_f * 100).to_i
     @cart.line_items.each do |item|
@@ -49,8 +50,8 @@ class OrdersController < ApplicationController
     end
     @customer_stripe_id = customer.id
     respond_to do |format|
+      @order.update(customer_stripe_id: @customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email)
       if @order.save
-        @order.update(customer_stripe_id: @customer_stripe_id)
         @cart.destroy
         format.html { redirect_to root_path, notice: "Votre commande a bien été validée, vous allez recevoir un mail tout bientôt !" }
         format.json { render :show, status: :created, location: @order }
