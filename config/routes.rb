@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'avatar/create'
   resources :orders, only: [:new, :create]
 
   devise_for :users, controllers: {
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :users , :path => "utilisateur" do 
     resources :carts, :path => "panier"
+    resources :avatars, only: [:create]
   end
   
   resources :items, only: [:show, :index]

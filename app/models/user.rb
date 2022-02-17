@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :cart, optional: true
+  has_many :orders
+  has_one_attached :avatar
 end
