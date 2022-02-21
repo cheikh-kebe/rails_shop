@@ -49,41 +49,41 @@
     </div>
     <!-- Marketing messaging and featurettes
   ================================================== -->
-      <!-- START THE FEATURETTES -->
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="bd-placeholder-img" width="100%" height="100%" src="https://image.api.playstation.com/vulcan/img/rnd/202011/0714/Cu9fyu6DM41JPekXLf1neF9r.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
+    <!-- START THE FEATURETTES -->
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading ms-5"><strong><%=@iron_man_name%></strong> </h2>
+        <p class="lead ms-5"><%=@iron_man_description%></p>
       </div>
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <img class="bd-placeholder-img" width="100%" height="100%" src="https://image.api.playstation.com/vulcan/img/rnd/202011/0714/Cu9fyu6DM41JPekXLf1neF9r.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
+      <div class="col-md-5">
+        <%=image_tag @iron_man_image%>
       </div>
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-          <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-        </div>
-        <div class="col-md-5">
-          <img class="bd-placeholder-img" width="100%" height="100%" src="https://image.api.playstation.com/vulcan/img/rnd/202011/0714/Cu9fyu6DM41JPekXLf1neF9r.png" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-        </div>
-      </div>
-      <hr class="featurette-divider">
-      <!-- /END THE FEATURETTES -->
     </div>
-    <!-- /.container -->
-    <!-- FOOTER -->
-  </main>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading"><strong><%=@hulk_name%></strong></h2>
+        <p class="lead"><%=@hulk_description%></p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <%=image_tag @hulk_image, {class: "ms-5"}%>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading ms-5"><strong><%=@thor_name%></strong> </h2>
+        <p class="lead ms-5"><%=@thor_description%>t.</p>
+      </div>
+      <div class="col-md-5">
+        <%=image_tag @thor_image, {class: "ms-5"}%>
+      </div>
+    </div>
+    <hr class="featurette-divider">
+    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.container -->
+  <!-- FOOTER -->
+</main>
 </body>

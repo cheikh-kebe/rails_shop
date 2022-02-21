@@ -21,7 +21,6 @@
                       <table class="table table-borderless">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Action</th>
                             <th scope="col">Photo</th>
                             <th scope="col">Article</th>
@@ -33,9 +32,8 @@
                         <tbody>
                           <% @cart.line_items.each do |line_item| %>
                             <tr>
-                              <th scope="row">1</th>
                               <td><%= button_to "Supprimer", line_item_path(line_item), method: :delete, class: "btn btn-sm btn-danger btn-block" %></td>
-                              <td><img src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/16148/16148._SX1600_QL80_TTD_.jpg" class="img-fluid" width="100" alt="product"></td>
+                              <td><%=image_tag line_item.item.image_url, {class: "img-fluid"}%></td>
                               <td><%=line_item.item.title%></td>
                               <td>
                                 <div class="form-group mb-0 d-flex">
@@ -79,8 +77,7 @@
                   <div class="cart-footer text-right">
                     <% if @cart.line_items.count == 0 %>
                     <% else %>
-                      <a href="page-checkout.html" class="btn btn-success my-1">Procéder au paiement<i class="ri-arrow-right-line ml-2"></i></a>
-                      <%=link_to "Commander", new_order_path, class:"btn btn-success my-1"%>
+                      <%=link_to "Procéder au paiement", new_order_path, class:"btn btn-success my-1"%>
                     <% end %>
                   </div>
                 </div>
