@@ -1,12 +1,12 @@
 <% @items.each do |item|%>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
   <div class="container">
     <div class="col-xs-12 col-md-10 bootstrap snippets bootdeys">
       <div class="product-content product-wrap clearfix">
         <div class="row">
           <div class="col-md-5 col-sm-12 col-xs-12">
             <div class="product-image">
-              <img src="https://images-na.ssl-images-amazon.com/images/S/cmx-images-prod/Item/16148/16148._SX1600_QL80_TTD_.jpg" alt="194x228" class="img-fluid">
+              <%=image_tag item.image_url%>
               <span class="tag2 hot">
                 hot
               </span>
@@ -30,7 +30,9 @@
             <div class="product-info smart-form">
               <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6">
-                  <%=button_to "Ajouter au panier", line_items_path(:item_id => item.id), class: "btn btn-sm btn-success"%>
+                  <%= button_to line_items_path(:item_id => item.id), {remote: true, class: "btn btn-success btn-rounded me-1"} do %>
+                    <i class="fa fa-shopping-cart"> Ajouté au panier</i>
+                  <% end %>
                 </div>
               </div>
             </div>
