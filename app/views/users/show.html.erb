@@ -133,29 +133,34 @@
               <div class="gold-members p-4">
                 <a href="#">
                 </a>
-                <% @orders.each do |order|%>
-                  <div class="media">
-                    <h3>Commande de <%=order.username%></h3>
-                    <a href="#">
-                      <%= image_tag current_user.avatar, alt: 'avatar' , class: " rounded-circle  isTooltip", :style =>"width :35px; height: 35px; margin-right:5px", :title => "Profil de #{current_user.username}"%>
-                    </a>
-                    <div class="media-body">
-                      <span class="float-right text-info">Commande passée le: <%=l order.created_at, :format => "%e %b %Y", :locale => 'fr'%> <i class="icofont-check-circled text-success"></i></span>
-                      <h6 class="mb-2">
-                        <a href="#"></a>
-                        <a href="#" class="text-black"></a>
-                      </h6>
-                      <p class="text-gray mb-1"><i class="icofont-location-arrow"></i> Addresse de livraison:
-                        <address><em><%=order.user.adress%></em></address>
-                      </p>
-                      <p class="text-gray mb-3"><i class="icofont-list"></i> <i class="icofont-clock-time ml-2"></i> <%=l order.updated_at, :format => "%e %b %Y à %Hh%M", :locale => 'fr'%></p>
-                      <p class="text-dark">
-                      </p>
-                      <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Montant total réglé:</span> <strong><%=order.total_price%></strong>
-                      </p>
-                      <hr>
+                <% if current_user.orders.count == 0  %>
+                  <h3>Passez votre première commmande!</h3>
+                  <%= link_to 'Voir la boutique', items_path%>
+                <% else %>
+                  <% @orders.each do |order|%>
+                    <div class="media">
+                      <h3>Commande de <%=order.username%></h3>
+                      <a href="#">
+                        <%= image_tag current_user.avatar, alt: 'avatar' , class: " rounded-circle  isTooltip", :style =>"width :35px; height: 35px; margin-right:5px", :title => "Profil de #{current_user.username}"%>
+                      </a>
+                      <div class="media-body">
+                        <span class="float-right text-info">Commande passée le: <%=l order.created_at, :format => "%e %b %Y", :locale => 'fr'%> <i class="icofont-check-circled text-success"></i></span>
+                        <h6 class="mb-2">
+                          <a href="#"></a>
+                          <a href="#" class="text-black"></a>
+                        </h6>
+                        <p class="text-gray mb-1"><i class="icofont-location-arrow"></i> Addresse de livraison:
+                          <address><em><%=order.user.adress%></em></address>
+                        </p>
+                        <p class="text-gray mb-3"><i class="icofont-list"></i> <i class="icofont-clock-time ml-2"></i> <%=l order.updated_at, :format => "%e %b %Y à %Hh%M", :locale => 'fr'%></p>
+                        <p class="text-dark">
+                        </p>
+                        <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold"> Montant total réglé:</span> <strong><%=order.total_price%></strong>
+                        </p>
+                        <hr>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
