@@ -2,11 +2,9 @@
   <section id="profile">
     <div class="container">
       <div class="row">
-        <div class="col-12">
+        <div class="col-10 text-center">
           <div class="card">
             <div class="our-team">
-              <div class="picture">
-              </div>
               <div class="team-content">
                 <%= form_with url: orders_path, local: true, method: :post do |form| %>
                   <% if order.errors.any? %>
@@ -19,40 +17,45 @@
                       </ul>
                     </div>
                   <% end %>
-                  <div class="field">
-                    <%= form.hidden_field :cart_id, value: @cart.id, readonly: true %>
+                  <div class="form-group">
+                    <%= form.hidden_field :cart_id, value: @cart.id, readonly: true, class: "form-control" %>
                   </div>
                   <div class="field">
-                    <%= form.hidden_field :user_id, value: current_user.id, readonly: true %>
+                    <%= form.hidden_field :user_id, value: current_user.id, readonly: true, class: "form-control" %>
                   </div>
-                  <div class="field">
-                    <%= form.text_field :username, value: current_user.username %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Nom d'utlisateur</span>
+                    <%= form.text_field :username, value: current_user.username, class: "form-control" %>
                   </div>
-                  <div class="field">
-                    <%= form.text_field :name, value: current_user.first_name %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Prénonm</span>
+                    <%= form.text_field :name, value: current_user.first_name, class: "form-control" %>
                   </div>
-                  <div class="field">
-                    <%= form.text_field :total_price, value: @cart.sub_total, readonly: true %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Montant</span>
+                    <%= form.text_field :total_price, value: @cart.sub_total, readonly: true, class: "form-control" %>
                   </div>
-                  <div class="field">
-                    <%= form.text_field :email, value: current_user.email, readonly: true %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Email</span>
+                    <%= form.text_field :email, value: current_user.email, readonly: true, class: "form-control" %>
                   </div>
-                  <div class="field">
-                    <%= form.text_field :adress, value: current_user.adress %>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Adresse</span>
+                    <%= form.text_field :adress, value: current_user.adress, class: "form-control" %>
                   </div>
                   <%= form_tag orders_path do %>
                     <article>
                       <label class="amount">
-                        <span> Prix de la commande : <%= @cart.sub_total %> €</span>
+                        <h3>Montant total de la commande : <%= @cart.sub_total %> €</h3>
                       </label>
                     </article>
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="marvel comics shop: <%=@cart.sub_total%>"
-    data-email="<%=current_user.email%>"
-    data-amount="<% @stripe_amount %>"
-    data-locale="auto"></script>
+                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                        data-description="marvel comics shop: <%=@cart.sub_total%>"
+                        data-email="<%=current_user.email%>"
+                        data-amount="<% @stripe_amount %>"
+                        data-locale="auto"></script>
                   <% end %>
                 <% end %>
               </div>

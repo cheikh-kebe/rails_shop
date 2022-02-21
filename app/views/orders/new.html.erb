@@ -1,10 +1,9 @@
 <section id="pay">
-
-<br>
-<br>
-<h2>Merci <%=current_user.username ? current_user.username.capitalize : current_user.username%>! Nous allons procéder au paiement! </h2>
-<%= render 'form', order: @order %>
-
-<br>
-
+  <br>
+  <br>
+  <div class="container">
+    <h2>Merci <%=current_user.username ? current_user.username.capitalize : current_user.username%>! Nous allons procéder au paiement! </h2>
+    <%= render 'form', order: @order %>
+  </div>
+  <br>
 </section>

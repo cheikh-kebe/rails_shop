@@ -34,9 +34,9 @@
       <div class="d-flex">
         <% if current_user %>
           <% if current_user.avatar.attached?%>
-            <%= image_tag current_user.avatar, alt: 'avatar' , class: " rounded-circle  isTooltip", :style =>"width :35px; height: 35px; margin-right:5px", :title => "Profil de #{current_user.username}"%>
+            <%= image_tag current_user.avatar, alt: 'avatar' , class: " rounded-circle me-2 isTooltip", :style =>"width :40px;", :title => "Profil de #{current_user.username}"%>
           <% else %>
-            <img alt="" style="width:60px;" title="" class="rounded-circle img-thumbnail isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
+            <img alt="" style="width:60px;" title="" class="rounded-circle img-thumbnail me-2 isTooltip" src="https://bootdey.com/img/Content/avatar/avatar7.png" data-original-title="Usuario">
           <% end %>
         <% end %>
         <form class="d-flex">
