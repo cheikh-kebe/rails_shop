@@ -15,7 +15,10 @@
  *= require_self
  *=
  */
-
+  @font-face {
+    font-family: 'Lato', sans-serif;
+    src: font-url("/app/assets/fonts/Lato-Bold.ttf") format('embedded-opentype');
+  }
   @import "items";
   @import "users";
   @import "main";
