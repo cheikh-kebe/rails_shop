@@ -20,12 +20,13 @@ def data_set
   }
 
   comics = RestClient.get("http://gateway.marvel.com/v1/public/comics?formatType=comic&noVariants=true&dateRange=2015-01-01%2C2022-01-02&limit=60&ts=#{api_data[:ts]}&apikey=#{api_data[:public]}&hash=#{api_data[:hash]}")
-  comics_array = JSON.parse(comics)["data"]["results"]
-
+  
+  comics_array = JSON.parse!(comics)["data"]["results"]
+  
   comics_array.map do |item|
-    Item.create!(
+    Item.create(
       title: item["title"],
-      description: Faker::Lorem.paragraph(sentence_count: 2, supplemental: false, random_sentences_to_add: 4),
+      description: item["description"].to_json,
       price: Faker::Number.decimal(l_digits: 2),
       image_url: "#{item["thumbnail"]["path"] ? item["thumbnail"]["path"] : "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" }/portrait_uncanny.jpg"
     )
