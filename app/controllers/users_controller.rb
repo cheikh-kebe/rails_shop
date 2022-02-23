@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   # GET /users/1 or /users/1.json
   def show
     @orders = Order.where(user_id: current_user.id)
+    @order = Order.find(params[:id])
   end
 
   # GET /users/new
