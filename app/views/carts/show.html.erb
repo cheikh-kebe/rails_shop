@@ -74,7 +74,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="cart-footer text-right">
+                  <div class="cart-footer text-center">
                     <% if @cart.line_items.count == 0 %>
                     <% else %>
                       <%=link_to "Procéder au paiement", new_order_path, class:"btn btn-success my-1"%>
@@ -82,6 +82,7 @@
                   </div>
                 </div>
               </div>
+                  <%= link_to 'Retourner à la boutique', items_path, class: "btn btn-primary"%>
             </div>
           </div>
         </div>

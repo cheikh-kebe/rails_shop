@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  require "stripe"
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_current_cart, only: %i[ new create ]
   before_action :authenticate_user!
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
     @user = current_user
     @amount = @cart.sub_total
     @stripe_amount = (@amount.to_f * 100).to_i
+
     @cart.line_items.each do |item|
       @order.line_items << item
       item.cart_id = nil
@@ -98,6 +100,6 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.permit(:user_id, :cart_id, :total_price)
+    params.permit(:user_id, :cart_id, :total_price, :customer_stripe_id, :username, :name, :email, :adress)
   end
 end
