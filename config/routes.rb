@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
-  
+  namespace :purchase do
+    resources :checkout, only: [:create, :success]
+  end
   root "static_pages#home"
   get 'avatar/create'
   

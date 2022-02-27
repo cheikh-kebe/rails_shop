@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_162540) do
     t.string "title"
     t.text "description"
     t.decimal "price", default: "0.0"
+    t.string "stripe_price"
     t.string "image_url"
     t.string "item_format"
     t.datetime "created_at", precision: 6, null: false
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_162540) do
     t.string "first_name"
     t.string "last_name"
     t.text "adress"
+    t.string "customer_stripe_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

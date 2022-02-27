@@ -43,20 +43,7 @@
                     <span class="input-group-text">Adresse</span>
                     <%= form.text_field :adress, value: current_user.adress, class: "form-control" %>
                   </div>
-                  <%= form_tag orders_path do %>
-                    <article>
-                      <label class="amount">
-                        <h3>Montant total de la commande : <%= @cart.sub_total %> €</h3>
-                      </label>
-                    </article>
-                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-
-                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                        data-description="marvel comics shop: <%=@cart.sub_total%>"
-                        data-email="<%=current_user.email%>"
-                        data-amount="<% @stripe_amount %>"
-                        data-locale="auto"></script>
-                  <% end %>
+                  <%=button_to "Valider commande", orders_path, class: "btn btn-primary"%>
                 <% end %>
               </div>
             </div>

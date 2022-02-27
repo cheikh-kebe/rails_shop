@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  require "stripe"
   before_action :set_order, only: %i[ show edit update destroy ]
   before_action :set_current_cart, only: %i[ new create ]
   before_action :authenticate_user!
@@ -35,24 +34,9 @@ class OrdersController < ApplicationController
       @order.line_items << item
       item.cart_id = nil
     end
-    begin
-      customer = Stripe::Customer.create({
-        email: params[:stripeEmail],
-        source: params[:stripeToken],
-      })
-      charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @stripe_amount,
-        description: "Achat d'un produit",
-        currency: "eur",
-      })
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_order_path
-    end
-    @customer_stripe_id = customer.id
+    
     respond_to do |format|
-      @order.update(customer_stripe_id: @customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email)
+      @order.update(customer_stripe_id: current_user.customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email)
       if @order.save
         @cart.destroy
         format.html { redirect_to root_path, notice: "Votre commande a bien été validée, vous allez recevoir un mail tout bientôt !" }
