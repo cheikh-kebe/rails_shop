@@ -1,4 +1,4 @@
 class ApiKey
-  PUBLIC_KEY = ENV["MARVEL_PUBLIC_API_KEY"]
-  PRIVATE_KEY = ENV["MARVEL_PRIVATE_API_KEY"]
+  PUBLIC_KEY = Rails.application.credentials.marvel[:marvel_public_api_key]
+  PRIVATE_KEY = Rails.application.credentials.marvel[:marvel_private_api_key]
 end

@@ -4,10 +4,11 @@ class Purchase::CheckoutController < ApplicationController
   def create
     cart= @current_cart
     line_items_quantity= cart.line_items.count
+    
     session = Stripe::Checkout::Session.create({
       customer: current_user.customer_stripe_id,
       line_items: [{
-        price: 'price_1KXO2aKIHBE4peCUKMcIYAJy',
+        price: Rails.application.credentials.stripe[:price],
         quantity: line_items_quantity,
       }],
   
@@ -19,7 +20,6 @@ class Purchase::CheckoutController < ApplicationController
   end
 
   def success
-    @session = Stripe::Checkout::Session.retrieve(session.id)
-    @customer = Stripe::Customer.retrieve(session.customer)
+    @session = Stripe::Checkout::Session.retrieve(params[:session_id])
   end
 end

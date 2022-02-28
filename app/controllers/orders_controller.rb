@@ -36,7 +36,7 @@ class OrdersController < ApplicationController
     end
     
     respond_to do |format|
-      @order.update(customer_stripe_id: current_user.customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email)
+      @order.update(customer_stripe_id: current_user.customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email) 
       if @order.save
         @cart.destroy
         format.html { redirect_to root_path, notice: "Votre commande a bien été validée, vous allez recevoir un mail tout bientôt !" }
@@ -84,6 +84,6 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.permit(:user_id, :cart_id, :total_price, :customer_stripe_id, :username, :name, :email, :adress)
+    params.permit(:user_id, :cart_id, :total_price, :customer_stripe_id, :username, :name, :email, :adress, :checkout_session_id)
   end
 end

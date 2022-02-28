@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_162540) do
     t.string "adress"
     t.decimal "total_price", precision: 10, scale: 2
     t.string "customer_stripe_id"
+    t.string "checkout_session_id"
     t.bigint "user_id"
     t.bigint "cart_id"
     t.datetime "created_at", precision: 6, null: false
