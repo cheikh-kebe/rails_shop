@@ -74,14 +74,15 @@
                       </div>
                     </div>
                   </div>
-                  <div class="cart-footer text-right">
+                  <div class="cart-footer text-center">
                     <% if @cart.line_items.count == 0 %>
                     <% else %>
-                      <%=link_to "Procéder au paiement", new_order_path, class:"btn btn-success my-1"%>
+                      <%=button_to "Payer #{number_to_currency(@cart.sub_total, :unit=>'€', format: "%n %u" )}",  purchase_checkout_index_path, class:"btn btn-success my-1"%>
                     <% end %>
                   </div>
                 </div>
               </div>
+              <%= link_to 'Retourner à la boutique', items_path, class: "btn btn-primary"%>
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ def data_set
     Item.create!(
       title: item["title"],
       description: item["description"].to_json,
-      price: Faker::Number.decimal(l_digits: 2),
+      price: 15.00,
       image_url: "#{item["thumbnail"]["path"] ? item["thumbnail"]["path"] : "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available" }/portrait_uncanny.jpg",
       item_format: item["format"]
     )

@@ -29,28 +29,14 @@ class OrdersController < ApplicationController
     @user = current_user
     @amount = @cart.sub_total
     @stripe_amount = (@amount.to_f * 100).to_i
+
     @cart.line_items.each do |item|
       @order.line_items << item
       item.cart_id = nil
     end
-    begin
-      customer = Stripe::Customer.create({
-        email: params[:stripeEmail],
-        source: params[:stripeToken],
-      })
-      charge = Stripe::Charge.create({
-        customer: customer.id,
-        amount: @stripe_amount,
-        description: "Achat d'un produit",
-        currency: "eur",
-      })
-    rescue Stripe::CardError => e
-      flash[:error] = e.message
-      redirect_to new_order_path
-    end
-    @customer_stripe_id = customer.id
+    
     respond_to do |format|
-      @order.update(customer_stripe_id: @customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email)
+      @order.update(customer_stripe_id: current_user.customer_stripe_id, username: @user.username, adress: @user.adress, name: @user.first_name, email: @user.email) 
       if @order.save
         @cart.destroy
         format.html { redirect_to root_path, notice: "Votre commande a bien été validée, vous allez recevoir un mail tout bientôt !" }
@@ -98,6 +84,6 @@ class OrdersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def order_params
-    params.permit(:user_id, :cart_id, :total_price)
+    params.permit(:user_id, :cart_id, :total_price, :customer_stripe_id, :username, :name, :email, :adress, :checkout_session_id)
   end
 end

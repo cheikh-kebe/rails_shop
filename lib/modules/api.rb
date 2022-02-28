@@ -3,8 +3,8 @@ module Api
   require "digest"
   require "json"
   
-  Public_key = ENV["MARVEL_PUBLIC_API_KEY"]
-  Private_key = ENV["MARVEL_PRIVATE_API_KEY"]
+  Public_key = Rails.application.credentials.marvel[:marvel_public_api_key]
+  Private_key = Rails.application.credentials.marvel[:marvel_private_api_key]
   number = Random.new
   Time_stamp = number.rand(100)
   Md5 = Digest::MD5.new

@@ -4,6 +4,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :description
       t.decimal :price, :default => 0
+      t.string :stripe_price
       t.string :image_url
       t.string :item_format
       

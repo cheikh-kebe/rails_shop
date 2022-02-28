@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration[6.1]
       t.string :adress
       t.decimal :total_price, precision: 10, scale: 2
       t.string :customer_stripe_id
-      
+      t.string :checkout_session_id
       t.belongs_to :user
       t.belongs_to :cart
 
