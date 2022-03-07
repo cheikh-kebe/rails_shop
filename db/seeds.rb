@@ -4,8 +4,8 @@ require "digest"
 require 'json'
 require './lib/modules/api_data'
 
-@prk = ApiKey::PRIVATE_KEY
-@puk = ApiKey::PUBLIC_KEY
+@prk = ENV['MARVEL_PRIVATE_API_KEY']
+@puk = ENV['MARVEL_PUBLIC_API_KEY']
 number = Random.new
 @time_stamp = number.rand(100)
 @md5 = Digest::MD5.new

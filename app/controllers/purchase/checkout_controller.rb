@@ -8,7 +8,7 @@ class Purchase::CheckoutController < ApplicationController
     session = Stripe::Checkout::Session.create({
       customer: current_user.customer_stripe_id,
       line_items: [{
-        price: Rails.application.credentials.stripe[:price],
+        price: ENV['STRIPE_PRICE'],
         quantity: line_items_quantity,
       }],
   

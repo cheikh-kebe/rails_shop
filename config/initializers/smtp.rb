@@ -1,6 +1,6 @@
 ActionMailer::Base.smtp_settings = {
-  :user_name => Rails.application.credentials.sendgrid[:sendgrid_login],
-  :password => Rails.application.credentials.sendgrid[:sendgrid_pwd],
+  :user_name => ENV['SENDGRID_LOGIN'],
+  :password => ENV['SENDGRID_PWD'],
   :domain => 'https://marvel-comics-shop.herokuapp.com/',
   :address => 'smtp.sendgrid.net',
   :port => 587,

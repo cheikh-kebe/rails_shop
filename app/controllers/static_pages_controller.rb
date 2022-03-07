@@ -2,12 +2,12 @@ class StaticPagesController < ApplicationController
   require "rest-client"
   require "digest"
   require "json"
-  require "./lib/modules/api_data"
+
 
   def home
     @items = Item.all
-    @prk = ApiKey::PRIVATE_KEY
-    @puk = ApiKey::PUBLIC_KEY
+    @prk = ENV["MARVEL_PRIVATE_API_KEY"]
+    @puk = ENV["MARVEL_PUBLIC_API_KEY"]
     number = Random.new
     @time_stamp = number.rand(100)
     @md5 = Digest::MD5.new
@@ -38,7 +38,7 @@ class StaticPagesController < ApplicationController
       @hulk_name = im["name"]
       @hulk_description = im["description"]
     end
-    
+
     thor = RestClient.get("#{url}characters?name=thor&ts=#{api_data[:ts]}&apikey=#{api_data[:public]}&hash=#{api_data[:hash]}")
     thor_thumb = JSON.parse(thor)["data"]["results"]
 
@@ -47,7 +47,5 @@ class StaticPagesController < ApplicationController
       @thor_name = im["name"]
       @thor_description = im["description"]
     end
-
-    
   end
 end
