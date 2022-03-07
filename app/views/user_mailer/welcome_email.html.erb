@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bienvenue sur <%=@website%>, <%= @user.first_name %></h1>
+    <p>
+      Tu t'es inscrit avec succès sur  <%=@website%>, avec le mail suivant: <%= @user.email %>.
+    </p>
+    <br>
+    <p>C'est sur ce mail que tu receveras tes validations de commande.</p>
+    <br>
+    <p>Merci et bon shopping sur <%=@website%>!!!</p>
+  </body>
+</html>

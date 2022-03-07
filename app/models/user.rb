@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :create_stripe_customer
+  after_create :send_welcome_email
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,5 +16,9 @@ class User < ApplicationRecord
     })
     self.customer_stripe_id = customer.id
     self.save
+  end
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver_now
   end
 end
