@@ -2,7 +2,6 @@
 require "rest-client"
 require "digest"
 require 'json'
-require './lib/modules/api_data'
 
 @prk = ENV['MARVEL_PRIVATE_API_KEY']
 @puk = ENV['MARVEL_PUBLIC_API_KEY']
