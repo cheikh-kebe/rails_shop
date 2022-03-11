@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: 'no-reply@marvel-comics-shop.herokuapp.com'
+  default from: 'https://marvel-comics-shop.herokuapp.com/'
 
   def welcome_email(user)
     @user = user
